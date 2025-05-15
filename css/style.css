@@ -1,0 +1,223 @@
+/* 
+* SMMM Saliha Çiçek - Ana Stil Dosyası
+* salihacicek.com
+*/
+
+/* Genel Stiller */
+:root {
+    --primary-color: #0d6efd;
+    --primary-dark: #0a58ca;
+    --secondary-color: #6c757d;
+    --light-color: #f8f9fa;
+    --dark-color: #212529;
+    --success-color: #198754;
+    --info-color: #0dcaf0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: #444;
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--dark-color);
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    color: var(--primary-dark);
+}
+
+.text-primary {
+    color: var(--primary-color) !important;
+}
+
+.bg-primary {
+    background-color: var(--primary-color) !important;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+    border-color: var(--primary-dark);
+}
+
+/* Header Stiller */
+.navbar {
+    padding: 1rem 0;
+    transition: all 0.3s ease;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+}
+
+.nav-link {
+    padding: 0.5rem 1rem !important;
+    font-weight: 500;
+    color: var(--dark-color) !important;
+    position: relative;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: var(--primary-color) !important;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    bottom: 0;
+    left: 1rem;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after, .nav-link.active::after {
+    width: calc(100% - 2rem);
+}
+
+/* Hero Bölümü */
+.hero-section {
+    padding: 5rem 0;
+    background-color: #f8f9fa;
+    position: relative;
+}
+
+.hero-section h1 {
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.hero-section .lead {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+/* Hizmetler Kartları */
+.card {
+    transition: all 0.3s ease;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+.card .icon-box {
+    margin-bottom: 1.5rem;
+}
+
+.card-title {
+    margin-bottom: 1rem;
+}
+
+/* Neden Biz Bölümü */
+.why-us-section {
+    padding: 5rem 0;
+}
+
+.feature-icon {
+    min-width: 40px;
+}
+
+/* Bölgesel Hizmetler */
+.local-services {
+    padding: 5rem 0;
+}
+
+/* İletişim Çağrısı */
+.cta-section {
+    padding: 4rem 0;
+}
+
+.cta-section h2 {
+    font-size: 2.2rem;
+}
+
+/* Footer */
+footer {
+    padding: 5rem 0 3rem;
+}
+
+footer h3 {
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+footer p, footer ul li {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+footer a {
+    color: rgba(255, 255, 255, 0.7);
+    transition: all 0.3s ease;
+}
+
+footer a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+.social-links a {
+    display: inline-block;
+    margin-right: 1rem;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    transform: translateY(-3px);
+}
+
+/* Responsive Ayarlar */
+@media (max-width: 992px) {
+    .hero-section {
+        padding: 3rem 0;
+    }
+    
+    .hero-section h1 {
+        font-size: 2.5rem;
+    }
+    
+    .nav-link::after {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+    
+    .hero-section .lead {
+        font-size: 1rem;
+    }
+    
+    .cta-section h2 {
+        font-size: 1.8rem;
+    }
+}
+
+/* Animasyonlar */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.fade-in {
+    animation: fadeIn 1s ease-in-out;
+} 
