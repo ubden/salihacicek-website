@@ -82,6 +82,16 @@
     
     <!-- Hero Bölümü -->
     <section class="hero-slider-section position-relative">
+        <!-- Animasyonlu Arkaplan -->
+        <div class="animated-background">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+            <div class="shape shape-5"></div>
+            <div class="shape shape-6"></div>
+        </div>
+        
         <!-- Slider Ana Konteyner -->
         <div class="slider-container">
             <!-- Slide 1 -->
@@ -241,12 +251,130 @@
     .hero-slider-section {
         overflow: hidden;
         position: relative;
-        background-color: #f8f9fa;
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
     }
-
+    
+    /* Animasyonlu Arkaplan */
+    .animated-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: 1;
+    }
+    
+    .shape {
+        position: absolute;
+        background: rgba(13, 16, 20, 0.04);
+        border-radius: 50%;
+        animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+    }
+    
+    .shape-1 {
+        width: 300px;
+        height: 300px;
+        left: -100px;
+        top: -100px;
+        animation: floating-1 20s infinite;
+        background: radial-gradient(circle, rgba(13, 16, 20, 0.03) 0%, rgba(13, 16, 20, 0.01) 70%);
+    }
+    
+    .shape-2 {
+        width: 200px;
+        height: 200px;
+        right: 10%;
+        top: 10%;
+        animation: floating-2 15s infinite;
+        background: radial-gradient(circle, rgba(13, 16, 20, 0.04) 0%, rgba(13, 16, 20, 0.01) 70%);
+    }
+    
+    .shape-3 {
+        width: 400px;
+        height: 400px;
+        right: -150px;
+        bottom: -150px;
+        animation: floating-3 25s infinite;
+        background: radial-gradient(circle, rgba(13, 16, 20, 0.03) 0%, rgba(13, 16, 20, 0.01) 70%);
+    }
+    
+    .shape-4 {
+        width: 180px;
+        height: 180px;
+        left: 20%;
+        bottom: 15%;
+        animation: floating-4 18s infinite;
+        background: radial-gradient(circle, rgba(13, 16, 20, 0.04) 0%, rgba(13, 16, 20, 0.01) 70%);
+    }
+    
+    .shape-5 {
+        width: 100px;
+        height: 100px;
+        left: 50%;
+        top: 20%;
+        animation: floating-5 12s infinite;
+        background: radial-gradient(circle, rgba(13, 16, 20, 0.03) 0%, rgba(13, 16, 20, 0.01) 70%);
+    }
+    
+    .shape-6 {
+        width: 150px;
+        height: 150px;
+        right: 30%;
+        bottom: 30%;
+        animation: floating-6 22s infinite;
+        background: radial-gradient(circle, rgba(13, 16, 20, 0.02) 0%, rgba(13, 16, 20, 0.01) 70%);
+    }
+    
+    @keyframes floating-1 {
+        0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+        100% { transform: translate(50px, 50px) rotate(5deg) scale(1.1); }
+    }
+    
+    @keyframes floating-2 {
+        0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+        100% { transform: translate(-30px, 30px) rotate(-8deg) scale(1.15); }
+    }
+    
+    @keyframes floating-3 {
+        0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+        100% { transform: translate(-40px, -40px) rotate(3deg) scale(1.08); }
+    }
+    
+    @keyframes floating-4 {
+        0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+        100% { transform: translate(25px, -25px) rotate(-5deg) scale(1.05); }
+    }
+    
+    @keyframes floating-5 {
+        0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+        100% { transform: translate(-15px, 20px) rotate(10deg) scale(1.1); }
+    }
+    
+    @keyframes floating-6 {
+        0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+        100% { transform: translate(35px, -15px) rotate(-3deg) scale(1.12); }
+    }
+    
     .slider-container {
         position: relative;
         height: 600px; /* Slider yüksekliği */
+        z-index: 2;
+    }
+    
+    /* Sliderın alt kısmındaki buğulu efekt */
+    .slider-container::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100px;
+        background: linear-gradient(to top, rgba(248, 249, 250, 0.9), rgba(248, 249, 250, 0));
+        z-index: 3;
+        pointer-events: none;
     }
 
     .slide {
@@ -256,13 +384,57 @@
         opacity: 0;
         visibility: hidden;
         transition: opacity 0.3s ease;
-        z-index: 1;
+        z-index: 2;
     }
-
+    
     .slide.active {
         opacity: 1;
         visibility: visible;
         z-index: 2;
+    }
+    
+    /* Slide içerik efektleri */
+    .slide-content {
+        position: relative;
+        z-index: 2;
+    }
+    
+    .slide-content h1 {
+        position: relative;
+    }
+    
+    .slide-content h1::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 80px;
+        height: 4px;
+        background-color: #0d1014;
+        border-radius: 2px;
+    }
+    
+    .slide-image {
+        position: relative;
+        z-index: 2;
+    }
+    
+    .slide-image::before {
+        content: '';
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 80%;
+        height: 80%;
+        border: 2px dashed rgba(13, 16, 20, 0.1);
+        border-radius: 10px;
+        z-index: -1;
+        animation: rotate 30s linear infinite;
+    }
+    
+    @keyframes rotate {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
     }
 
     /* Slider Kontrol Stilleri */
@@ -348,9 +520,39 @@
     document.addEventListener('DOMContentLoaded', function() {
         const gsapScript = document.createElement('script');
         gsapScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js';
-        gsapScript.onload = initializeSlider;
+        gsapScript.onload = function() {
+            initializeSlider();
+            initializeBackgroundAnimation();
+        };
         document.head.appendChild(gsapScript);
     });
+
+    function initializeBackgroundAnimation() {
+        if (!window.gsap) return;
+        
+        // Arkaplan şekilleri için rastgele hareket animasyonları
+        const shapes = document.querySelectorAll('.shape');
+        
+        shapes.forEach((shape, index) => {
+            // Rastgele başlangıç pozisyonu
+            gsap.set(shape, {
+                x: gsap.utils.random(-20, 20),
+                y: gsap.utils.random(-20, 20),
+                rotation: gsap.utils.random(-10, 10)
+            });
+            
+            // Sonsuz hareket animasyonu
+            gsap.to(shape, {
+                x: gsap.utils.random(-40, 40),
+                y: gsap.utils.random(-40, 40),
+                rotation: gsap.utils.random(-15, 15),
+                duration: gsap.utils.random(15, 30),
+                ease: "sine.inOut",
+                repeat: -1,
+                yoyo: true
+            });
+        });
+    }
 
     let currentSlide = 0;
     const slides = document.querySelectorAll('.slide');
@@ -375,12 +577,14 @@
             const content = slide.querySelector('.slide-content');
             const image = slide.querySelector('.slide-image');
             const buttons = slide.querySelector('.slide-buttons');
+            const heading = content.querySelector('h1');
+            const paragraph = content.querySelector('p');
             
             // Başlangıç durumları
-            gsap.set(content.querySelector('h1'), { y: 50, opacity: 0 });
-            gsap.set(content.querySelector('p'), { y: 30, opacity: 0 });
+            gsap.set(heading, { y: 50, opacity: 0 });
+            gsap.set(paragraph, { y: 30, opacity: 0 });
             gsap.set(buttons, { y: 20, opacity: 0 });
-            gsap.set(image, { x: 50, opacity: 0 });
+            gsap.set(image, { x: 50, opacity: 0, scale: 0.95 });
         });
     }
 
@@ -391,11 +595,13 @@
         const content = slide.querySelector('.slide-content');
         const image = slide.querySelector('.slide-image');
         const buttons = slide.querySelector('.slide-buttons');
+        const heading = content.querySelector('h1');
+        const paragraph = content.querySelector('p');
         
         const timeline = gsap.timeline();
         
         // Başlık animasyonu
-        timeline.to(content.querySelector('h1'), {
+        timeline.to(heading, {
             y: 0,
             opacity: 1,
             duration: 0.7,
@@ -403,7 +609,7 @@
         });
         
         // Paragraf animasyonu
-        timeline.to(content.querySelector('p'), {
+        timeline.to(paragraph, {
             y: 0,
             opacity: 1,
             duration: 0.7,
@@ -422,7 +628,8 @@
         timeline.to(image, {
             x: 0,
             opacity: 1,
-            duration: 0.7,
+            scale: 1,
+            duration: 0.8,
             ease: "power2.out"
         }, "-=0.6");
     }
@@ -434,11 +641,13 @@
         const content = slide.querySelector('.slide-content');
         const image = slide.querySelector('.slide-image');
         const buttons = slide.querySelector('.slide-buttons');
+        const heading = content.querySelector('h1');
+        const paragraph = content.querySelector('p');
         
-        gsap.set(content.querySelector('h1'), { y: 50, opacity: 0 });
-        gsap.set(content.querySelector('p'), { y: 30, opacity: 0 });
+        gsap.set(heading, { y: 50, opacity: 0 });
+        gsap.set(paragraph, { y: 30, opacity: 0 });
         gsap.set(buttons, { y: 20, opacity: 0 });
-        gsap.set(image, { x: 50, opacity: 0 });
+        gsap.set(image, { x: 50, opacity: 0, scale: 0.95 });
     }
 
     function changeSlide(direction) {
