@@ -124,7 +124,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center text-white">
-                    <h1 class="fw-bold mb-3">Mükellef Giriş Paneli</h1>
+                    <h1 class="fw-bold mb-3 text-white">Mükellef Giriş Paneli</h1>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center mb-0">
                             <li class="breadcrumb-item"><a href="index.html" class="text-white text-decoration-none">Ana Sayfa</a></li>
