@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+Disallow: /mukellef-login.php
+
+# Resim ve medya dosyalarına erişime izin ver
+Allow: /images/
+Allow: /css/
+Allow: /js/
+
+# Admin ve diğer özel sayfaları engelleyin (gelecekte eklenirse)
+Disallow: /admin/
+Disallow: /temp/
+Disallow: /cgi-bin/
+
+# Google Imagebot özel ayarları
+User-agent: Googlebot-Image
+Allow: /images/
+
+# Sitemap dosyası
+Sitemap: https://salihacicek.com/sitemap.xml 
