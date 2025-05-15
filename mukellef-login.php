@@ -183,7 +183,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                 Beni hatırla
                                             </label>
                                         </div>
-                                        <a href="#" class="text-decoration-none">Şifremi unuttum</a>
                                     </div>
                                     <div class="d-grid">
                                         <button type="submit" class="btn btn-primary btn-login">
@@ -412,9 +411,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
                 <div class="col-md-6 text-md-end">
                     <ul class="list-inline mb-0">
-                        <li class="list-inline-item"><a href="#" class="text-white text-decoration-none">Gizlilik Politikası</a></li>
-                        <li class="list-inline-item ms-3"><a href="#" class="text-white text-decoration-none">Hizmet Şartları</a></li>
-                        <li class="list-inline-item ms-3"><a href="#" class="text-white text-decoration-none">Çerez Politikası</a></li>
+                        <li class="list-inline-item"><a href="gizlilik-politikasi.html" class="text-white text-decoration-none">Gizlilik Politikası</a></li>
+                        <li class="list-inline-item ms-3"><a href="hizmet-sartlari.html" class="text-white text-decoration-none">Hizmet Şartları</a></li>
+                        <li class="list-inline-item ms-3"><a href="cerez-politikasi.html" class="text-white text-decoration-none">Çerez Politikası</a></li>
                     </ul>
                 </div>
             </div>
