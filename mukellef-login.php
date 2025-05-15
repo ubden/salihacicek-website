@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             overflow: hidden;
         }
         .login-card .card-header {
-            background-color: #0d6efd;
+            background-color: #0d1014;
             color: white;
             text-align: center;
             padding: 25px;
@@ -120,7 +120,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </header>
     
     <!-- Sayfa Başlığı -->
-    <section class="page-header bg-primary py-4">
+    <section class="page-header bg-dark py-4">
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center text-white">
@@ -148,8 +148,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <!-- SVG Logo -->
                                 <svg class="form-logo" width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
                                     <rect width="80" height="80" rx="40" fill="#ffffff" />
-                                    <circle cx="40" cy="30" r="12" fill="#0d6efd" />
-                                    <path d="M40,50 C24,50 20,65 20,65 L60,65 C60,65 56,50 40,50 Z" fill="#0d6efd" />
+                                    <circle cx="40" cy="30" r="12" fill="#0d1014" />
+                                    <path d="M40,50 C24,50 20,65 20,65 L60,65 C60,65 56,50 40,50 Z" fill="#0d1014" />
                                     <circle cx="40" cy="40" r="38" fill="none" stroke="#ffffff" stroke-width="2" />
                                 </svg>
                                 <h2 class="h4 fw-bold mb-0">Mükellef Yönetim Paneli</h2>
@@ -185,7 +185,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         </div>
                                     </div>
                                     <div class="d-grid">
-                                        <button type="submit" class="btn btn-primary btn-login">
+                                        <button type="submit" class="btn btn-dark btn-login">
                                             <i class="fas fa-sign-in-alt me-2"></i>Giriş Yap
                                         </button>
                                     </div>
@@ -227,10 +227,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                 <!-- İnteraktif Vergi Dairesi Logo -->
                                                 <svg class="link-logo" width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
                                                     <rect width="60" height="60" rx="10" fill="#f8f9fa" />
-                                                    <rect x="10" y="15" width="40" height="30" rx="2" fill="#0d6efd" opacity="0.8" />
+                                                    <rect x="10" y="15" width="40" height="30" rx="2" fill="#0d1014" opacity="0.8" />
                                                     <rect x="15" y="20" width="30" height="5" rx="1" fill="white" />
                                                     <rect x="15" y="30" width="30" height="5" rx="1" fill="white" />
-                                                    <circle cx="30" cy="45" r="5" fill="#0d6efd" />
+                                                    <circle cx="30" cy="45" r="5" fill="#0d1014" />
                                                 </svg>
                                                 <h4 class="card-title h6 mt-2">İnteraktif Vergi Dairesi</h4>
                                                 <p class="card-text small text-muted">Vergi işlemlerinizi online yapın</p>
@@ -269,7 +269,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                 <!-- Dijital Vergi Dairesi Logo -->
                                                 <svg class="link-logo" width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
                                                     <rect width="60" height="60" rx="10" fill="#f8f9fa" />
-                                                    <rect x="10" y="10" width="40" height="40" rx="5" fill="#6f42c1" opacity="0.8" />
+                                                    <rect x="10" y="10" width="40" height="40" rx="5" fill="#0d1014" opacity="0.8" />
                                                     <rect x="20" y="20" width="20" height="5" rx="1" fill="white" />
                                                     <rect x="20" y="30" width="20" height="5" rx="1" fill="white" />
                                                     <circle cx="15" cy="20" r="2" fill="white" />
@@ -355,8 +355,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <div class="col-md-6">
                                     <h4 class="h6 fw-bold">SMMM Saliha Çiçek</h4>
                                     <ul class="list-unstyled">
-                                        <li class="mb-2"><i class="fas fa-phone text-primary me-2"></i> 0537 346 51 61</li>
-                                        <li class="mb-2"><i class="fas fa-envelope text-primary me-2"></i> smmmsalihacicek@gmail.com</li>
+                                        <li class="mb-2"><i class="fas fa-phone text-dark me-2"></i> 0537 346 51 61</li>
+                                        <li class="mb-2"><i class="fas fa-envelope text-dark me-2"></i> smmmsalihacicek@gmail.com</li>
                                     </ul>
                                 </div>
                                 <div class="col-md-6">
