@@ -356,7 +356,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <h4 class="h6 fw-bold">SMMM Saliha Çiçek</h4>
                                     <ul class="list-unstyled">
                                         <li class="mb-2"><i class="fas fa-phone text-primary me-2"></i> 0537 346 51 61</li>
-                                        <li class="mb-2"><i class="fas fa-envelope text-primary me-2"></i> smmmsalihacicek@gmail.com</li>
+                                        <li class="mb-2"><i class="fas fa-envelope text-primary me-2"></i> info@salihacicek.com</li>
                                     </ul>
                                 </div>
                                 <div class="col-md-6">
@@ -392,7 +392,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <ul class="list-unstyled">
                         <li class="mb-3"><i class="fas fa-map-marker-alt me-2"></i> Gazi Mustafa Kemalpaşa, Atatürk Cd. No:72, 59500 Çerkezköy/Tekirdağ</li>
                         <li class="mb-3"><i class="fas fa-phone me-2"></i> <a href="tel:+905373465161" class="text-white text-decoration-none">0537 346 51 61</a></li>
-                        <li class="mb-3"><i class="fas fa-envelope me-2"></i> <a href="mailto:smmmsalihacicek@gmail.com" class="text-white text-decoration-none">smmmsalihacicek@gmail.com</a></li>
+                        <li class="mb-3"><i class="fas fa-envelope me-2"></i> <a href="mailto:info@salihacicek.com" class="text-white text-decoration-none">info@salihacicek.com</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-4">

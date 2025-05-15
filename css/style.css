@@ -5,8 +5,8 @@
 
 /* Genel Stiller */
 :root {
-    --primary-color: #0d6efd;
-    --primary-dark: #0a58ca;
+    --primary-color: #0d1014;
+    --primary-dark: #0d1014;
     --secondary-color: #6c757d;
     --light-color: #f8f9fa;
     --dark-color: #212529;
@@ -146,6 +146,7 @@ a:hover {
 
 .cta-section h2 {
     font-size: 2.2rem;
+    color: #ffffff;
 }
 
 /* Footer */
