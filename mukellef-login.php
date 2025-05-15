@@ -380,7 +380,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="row g-4">
                 <div class="col-lg-4">
                     <h3 class="h5 mb-4">SMMM Saliha Çiçek</h3>
-                    <p>Profesyonel mali müşavirlik ve <a href="https://www.ubden.com.tr/" target="_blank" class="text-white text-decoration-underline">Ubden® Teknoloji</a> iş ortaklığıyla IT çözümleri sunuyoruz.</p>
+                    <p>Profesyonel mali müşavirlik ve danışmanlık hizmetleri sunuyoruz.</p>
                     <div class="social-links mt-4">
                         <a href="https://www.linkedin.com/company/smmm-saliha-cicek/" class="text-white me-3" target="_blank"><i class="fab fa-linkedin fa-lg"></i></a>
                         <a href="#" class="text-white me-3"><i class="fab fa-facebook fa-lg"></i></a>
