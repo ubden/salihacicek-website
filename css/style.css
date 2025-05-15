@@ -12,6 +12,9 @@
     --dark-color: #212529;
     --success-color: #198754;
     --info-color: #0dcaf0;
+    --btn-hover-color: #2c3036;
+    --btn-hover-border-color: #2c3036;
+    --btn-hover-bg: #1e2124;
 }
 
 body {
@@ -48,8 +51,25 @@ a:hover {
 }
 
 .btn-primary:hover {
-    background-color: var(--primary-dark);
-    border-color: var(--primary-dark);
+    background-color: var(--btn-hover-bg);
+    border-color: var(--btn-hover-border-color);
+}
+
+.btn-outline-primary {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+}
+
+/* Outline Light buton hover efektleri */
+.btn-outline-light:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
 }
 
 /* Header Stiller */
@@ -62,18 +82,50 @@ a:hover {
     font-size: 1.5rem;
 }
 
-.nav-link {
+/* Dark tema için logo parlaklık ayarı */
+.navbar-dark .navbar-brand img {
+  /*  filter: brightness(1.1); */
+}
+
+.navbar-dark .nav-link {
+    padding: 0.5rem 1rem !important;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.85) !important;
+    position: relative;
+}
+
+.navbar-dark .nav-link:hover, .navbar-dark .nav-link.active {
+    color: #ffffff !important;
+}
+
+.navbar-dark .nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: #ffffff;
+    bottom: 0;
+    left: 1rem;
+    transition: width 0.3s ease;
+}
+
+.navbar-dark .nav-link:hover::after, .navbar-dark .nav-link.active::after {
+    width: calc(100% - 2rem);
+}
+
+/* Light tema için orijinal stillerimizi koruyalım */
+.navbar-light .nav-link {
     padding: 0.5rem 1rem !important;
     font-weight: 500;
     color: var(--dark-color) !important;
     position: relative;
 }
 
-.nav-link:hover, .nav-link.active {
+.navbar-light .nav-link:hover, .navbar-light .nav-link.active {
     color: var(--primary-color) !important;
 }
 
-.nav-link::after {
+.navbar-light .nav-link::after {
     content: '';
     position: absolute;
     width: 0;
@@ -84,7 +136,7 @@ a:hover {
     transition: width 0.3s ease;
 }
 
-.nav-link:hover::after, .nav-link.active::after {
+.navbar-light .nav-link:hover::after, .navbar-light .nav-link.active::after {
     width: calc(100% - 2rem);
 }
 
@@ -142,6 +194,7 @@ a:hover {
 /* İletişim Çağrısı */
 .cta-section {
     padding: 4rem 0;
+    background-color: var(--primary-color) !important;
 }
 
 .cta-section h2 {
@@ -221,4 +274,41 @@ footer a:hover {
 
 .fade-in {
     animation: fadeIn 1s ease-in-out;
+}
+
+/* Hero Bölümü Buton Düzenlemeleri */
+.hero-section .btn-primary,
+.hero-section .btn-outline-primary {
+    padding: 0.75rem 1.5rem;
+    font-weight: 500;
+}
+
+/* Hizmetler Bölümü İkon Renkleri */
+.icon-box i.text-primary,
+.fas.text-primary,
+i.text-primary {
+    color: var(--primary-color) !important;
+}
+
+/* Card link renkleri */
+.card .btn-link.text-primary {
+    color: var(--primary-color) !important;
+}
+
+/* Card hover efektleri */
+.card:hover {
+    border-color: var(--primary-color);
+}
+
+/* SVG görseller içindeki renkler */
+svg path[fill="#007bff"],
+svg circle[fill="#007bff"],
+svg rect[fill="#007bff"] {
+    fill: var(--primary-color);
+}
+
+svg path[stroke="#007bff"],
+svg circle[stroke="#007bff"],
+svg rect[stroke="#007bff"] {
+    stroke: var(--primary-color);
 } 
