@@ -40,6 +40,125 @@
     
     <!-- Favicon -->
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    
+    <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+    
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        background: #383838;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+    
+    /* Custom Cursor */
+    .cursor-dot,
+    .cursor-outline {
+        pointer-events: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        border-radius: 50%;
+        z-index: 9999;
+        will-change: transform;
+        transform: translate(-50%, -50%);
+    }
+    
+    .cursor-dot {
+        width: 8px;
+        height: 8px;
+        background-color: #1a1a1a;
+        transition: transform 0.1s ease-out, background-color 0.2s ease;
+    }
+    
+    .cursor-outline {
+        width: 30px;
+        height: 30px;
+        border: 2px solid rgba(26, 26, 26, 0.5);
+        transition: width 0.2s ease-out, height 0.2s ease-out, border-color 0.2s ease, opacity 0.3s ease;
+    }
+    
+    a, button, input, textarea, .whatsapp-btn, .slider-arrow, .dot, .btn, .nav-link, .card {
+        cursor: none !important;
+    }
+    
+    /* Hide cursor effect on mobile */
+    @media (max-width: 768px) {
+        .cursor-dot, .cursor-outline {
+            display: none;
+        }
+    }
+    </style>
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+    
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        background: #383838;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+    
+    /* Custom Cursor */
+    .cursor-dot,
+    .cursor-outline {
+        pointer-events: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        border-radius: 50%;
+        z-index: 9999;
+        will-change: transform;
+        transform: translate(-50%, -50%);
+    }
+    
+    .cursor-dot {
+        width: 8px;
+        height: 8px;
+        background-color: #1a1a1a;
+        transition: transform 0.1s ease-out, background-color 0.2s ease;
+    }
+    
+    .cursor-outline {
+        width: 30px;
+        height: 30px;
+        border: 2px solid rgba(26, 26, 26, 0.5);
+        transition: width 0.2s ease-out, height 0.2s ease-out, border-color 0.2s ease, opacity 0.3s ease;
+    }
+    
+    a, button, input, textarea, .whatsapp-btn, .slider-arrow, .dot, .btn, .nav-link, .card {
+        cursor: none !important;
+    }
+    
+    /* Hide cursor effect on mobile */
+    @media (max-width: 768px) {
+        .cursor-dot, .cursor-outline {
+            display: none;
+        }
+    }
+    </style>
 </head>
 <body>
     <!-- Header Bölümü -->
@@ -1684,6 +1803,117 @@
                 whatsappPopup.style.display = 'none';
             }
         });
+        
+        // Custom cursor effect - Optimize edilmiş versiyon
+        if (window.innerWidth > 768) {
+            // HTML yapısı ekleyelim
+            const cursorDot = document.createElement('div');
+            cursorDot.className = 'cursor-dot';
+            
+            const cursorOutline = document.createElement('div');
+            cursorOutline.className = 'cursor-outline';
+            
+            document.body.appendChild(cursorDot);
+            document.body.appendChild(cursorOutline);
+            
+            // Mouse pozisyonlarını takip eden değişkenler
+            let mouseX = 0;
+            let mouseY = 0;
+            let outlineX = 0;
+            let outlineY = 0;
+            let isHovering = false;
+            let isClicking = false;
+            let frameId;
+            
+            // Gecikmeli takip için easing faktörü
+            const easing = 0.2;
+            
+            // Fare hareketini izleyelim
+            document.addEventListener('mousemove', function(e) {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                
+                // Noktayı hemen güncelle
+                cursorDot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
+            });
+            
+            // Tıklama animasyonu
+            document.addEventListener('mousedown', function() {
+                isClicking = true;
+                if (!isHovering) {
+                    cursorOutline.style.width = '28px';
+                    cursorOutline.style.height = '28px';
+                }
+                cursorDot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%) scale(0.8)`;
+            });
+            
+            document.addEventListener('mouseup', function() {
+                isClicking = false;
+                if (!isHovering) {
+                    cursorOutline.style.width = '30px';
+                    cursorOutline.style.height = '30px';
+                }
+                cursorDot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%) scale(1)`;
+            });
+            
+            // Tıklanabilir elementler için hover efekti
+            const tıklanabilirler = document.querySelectorAll('a, button, .btn, .whatsapp-btn, .slider-arrow, .dot, .nav-link, .card, input, textarea');
+            
+            tıklanabilirler.forEach(element => {
+                element.addEventListener('mouseenter', function() {
+                    isHovering = true;
+                    cursorOutline.style.width = '50px';
+                    cursorOutline.style.height = '50px';
+                    cursorOutline.style.borderColor = 'rgba(26, 26, 26, 0.2)';
+                    cursorDot.style.backgroundColor = '#383838';
+                });
+                
+                element.addEventListener('mouseleave', function() {
+                    isHovering = false;
+                    cursorOutline.style.width = '30px';
+                    cursorOutline.style.height = '30px';
+                    cursorOutline.style.borderColor = 'rgba(26, 26, 26, 0.5)';
+                    cursorDot.style.backgroundColor = '#1a1a1a';
+                });
+            });
+            
+            // Sayfa değiştiğinde cursor'ı gizle
+            document.addEventListener('mouseleave', function() {
+                cursorDot.style.opacity = '0';
+                cursorOutline.style.opacity = '0';
+            });
+            
+            document.addEventListener('mouseenter', function() {
+                cursorDot.style.opacity = '1';
+                cursorOutline.style.opacity = '1';
+            });
+            
+            // Çemberin takip hareketini daha akıcı hale getirmek için
+            // requestAnimationFrame kullanıyoruz
+            function animateCursor() {
+                // Mevcut ve hedef pozisyon arasındaki farkı hesaplama
+                let dx = mouseX - outlineX;
+                let dy = mouseY - outlineY;
+                
+                // Easing (yumuşatma) uygulayarak yeni pozisyonu hesaplama
+                outlineX += dx * easing;
+                outlineY += dy * easing;
+                
+                // Halkanın pozisyonunu güncelleme
+                cursorOutline.style.transform = `translate(${outlineX}px, ${outlineY}px) translate(-50%, -50%)`;
+                
+                // Animasyonu devam ettirme
+                frameId = requestAnimationFrame(animateCursor);
+            }
+            
+            // İlk animasyon başlatma
+            frameId = requestAnimationFrame(animateCursor);
+            
+            // Sayfa kapanırken veya değiştirilirken animasyonu temizleme
+            window.addEventListener('beforeunload', () => {
+                cancelAnimationFrame(frameId);
+            });
+        }
     });
     </script>
 </body>
