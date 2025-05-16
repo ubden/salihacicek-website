@@ -543,5 +543,159 @@
     
     <!-- Custom JS -->
     <script src="js/main.js"></script>
+    <script>
+    // WhatsApp butonu etkileşimleri
+    document.addEventListener('DOMContentLoaded', function() {
+        const whatsappBtn = document.querySelector('.whatsapp-btn');
+        const whatsappPopup = document.querySelector('.whatsapp-popup');
+        const closeBtn = document.querySelector('.close-btn');
+        const sendBtn = document.getElementById('whatsapp-send');
+        const messageInput = document.getElementById('whatsapp-message');
+        
+        whatsappBtn.addEventListener('click', function() {
+            whatsappPopup.style.display = whatsappPopup.style.display === 'block' ? 'none' : 'block';
+        });
+        
+        closeBtn.addEventListener('click', function() {
+            whatsappPopup.style.display = 'none';
+        });
+        
+        sendBtn.addEventListener('click', function() {
+            const message = encodeURIComponent(messageInput.value.trim());
+            if (message) {
+                const whatsappLink = `https://wa.me/905373465161?text=${message}`;
+                window.open(whatsappLink, '_blank');
+                messageInput.value = '';
+                whatsappPopup.style.display = 'none';
+            }
+        });
+        
+        // Enter tuşu ile mesaj gönderme
+        messageInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendBtn.click();
+            }
+        });
+        
+        // Popup dışına tıklandığında kapatma
+        document.addEventListener('click', function(e) {
+            if (!whatsappPopup.contains(e.target) && e.target !== whatsappBtn) {
+                whatsappPopup.style.display = 'none';
+            }
+        });
+        
+        // Custom cursor effect - Optimize edilmiş versiyon
+        if (window.innerWidth > 768) {
+            // HTML yapısı ekleyelim
+            const cursorDot = document.createElement('div');
+            cursorDot.className = 'cursor-dot';
+            
+            const cursorOutline = document.createElement('div');
+            cursorOutline.className = 'cursor-outline';
+            
+            document.body.appendChild(cursorDot);
+            document.body.appendChild(cursorOutline);
+            
+            // Mouse pozisyonlarını takip eden değişkenler
+            let mouseX = 0;
+            let mouseY = 0;
+            let outlineX = 0;
+            let outlineY = 0;
+            let isHovering = false;
+            let isClicking = false;
+            let frameId;
+            
+            // Gecikmeli takip için easing faktörü
+            const easing = 0.2;
+            
+            // Fare hareketini izleyelim
+            document.addEventListener('mousemove', function(e) {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                
+                // Noktayı hemen güncelle
+                cursorDot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
+            });
+            
+            // Tıklama animasyonu
+            document.addEventListener('mousedown', function() {
+                isClicking = true;
+                if (!isHovering) {
+                    cursorOutline.style.width = '28px';
+                    cursorOutline.style.height = '28px';
+                }
+                cursorDot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%) scale(0.8)`;
+            });
+            
+            document.addEventListener('mouseup', function() {
+                isClicking = false;
+                if (!isHovering) {
+                    cursorOutline.style.width = '30px';
+                    cursorOutline.style.height = '30px';
+                }
+                cursorDot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%) scale(1)`;
+            });
+            
+            // Tıklanabilir elementler için hover efekti
+            const tıklanabilirler = document.querySelectorAll('a, button, .btn, .whatsapp-btn, .slider-arrow, .dot, .nav-link, .card, input, textarea');
+            
+            tıklanabilirler.forEach(element => {
+                element.addEventListener('mouseenter', function() {
+                    isHovering = true;
+                    cursorOutline.style.width = '50px';
+                    cursorOutline.style.height = '50px';
+                    cursorOutline.style.borderColor = 'rgba(26, 26, 26, 0.2)';
+                    cursorDot.style.backgroundColor = '#383838';
+                });
+                
+                element.addEventListener('mouseleave', function() {
+                    isHovering = false;
+                    cursorOutline.style.width = '30px';
+                    cursorOutline.style.height = '30px';
+                    cursorOutline.style.borderColor = 'rgba(26, 26, 26, 0.5)';
+                    cursorDot.style.backgroundColor = '#1a1a1a';
+                });
+            });
+            
+            // Sayfa değiştiğinde cursor'ı gizle
+            document.addEventListener('mouseleave', function() {
+                cursorDot.style.opacity = '0';
+                cursorOutline.style.opacity = '0';
+            });
+            
+            document.addEventListener('mouseenter', function() {
+                cursorDot.style.opacity = '1';
+                cursorOutline.style.opacity = '1';
+            });
+            
+            // Çemberin takip hareketini daha akıcı hale getirmek için
+            // requestAnimationFrame kullanıyoruz
+            function animateCursor() {
+                // Mevcut ve hedef pozisyon arasındaki farkı hesaplama
+                let dx = mouseX - outlineX;
+                let dy = mouseY - outlineY;
+                
+                // Easing (yumuşatma) uygulayarak yeni pozisyonu hesaplama
+                outlineX += dx * easing;
+                outlineY += dy * easing;
+                
+                // Halkanın pozisyonunu güncelleme
+                cursorOutline.style.transform = `translate(${outlineX}px, ${outlineY}px) translate(-50%, -50%)`;
+                
+                // Animasyonu devam ettirme
+                frameId = requestAnimationFrame(animateCursor);
+            }
+            
+            // İlk animasyon başlatma
+            frameId = requestAnimationFrame(animateCursor);
+            
+            // Sayfa kapanırken veya değiştirilirken animasyonu temizleme
+            window.addEventListener('beforeunload', () => {
+                cancelAnimationFrame(frameId);
+            });
+        }
+    });
+    </script>
 </body>
 </html> 
