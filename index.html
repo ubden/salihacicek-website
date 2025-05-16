@@ -53,6 +53,9 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
+                    <button class="navbar-close d-lg-none" type="button" aria-label="Close">
+                        <i class="fas fa-times"></i>
+                    </button>
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="index.html">Ana Sayfa</a>
@@ -78,6 +81,7 @@
                 </div>
             </div>
         </nav>
+        <div class="menu-overlay"></div>
     </header>
     
     <!-- Hero Bölümü -->
@@ -117,14 +121,18 @@
                             <h1 class="display-4 fw-bold mb-4">Profesyonel Mali Müşavirlik Hizmetleri</h1>
                             <p class="lead mb-4">10 yılı aşkın tecrübemizle işletmenizin finansal süreçlerini profesyonel bir şekilde yönetiyoruz.</p>
                             <div class="d-flex gap-3 slide-buttons">
-                                <a href="iletisim.html" class="btn btn-primary btn-lg">Bize Ulaşın</a>
-                                <a href="hizmetler.html" class="btn btn-outline-primary btn-lg">Hizmetlerimiz</a>
+                                <a href="iletisim.html" class="btn btn-primary btn-lg">
+                                    <i class="fas fa-phone me-2"></i>Bize Ulaşın
+                                </a>
+                                <a href="hizmetler.html" class="btn btn-outline-primary btn-lg">
+                                    <i class="fas fa-list me-2"></i>Hizmetlerimiz
+                                </a>
                             </div>
                         </div>
                         <div class="col-lg-6 mt-5 mt-lg-0 slide-image">
                             <div class="hero-img text-center">
                                 <!-- SVG Görseli -->
-                                <svg width="100%" height="400" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+                                <svg class="hero-svg" width="100%" height="400" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
                                     <rect x="100" y="50" width="400" height="300" rx="10" fill="#f0f8ff" />
                                     <rect x="130" y="80" width="340" height="40" rx="5" fill="#e6f2ff" />
                                     <rect x="130" y="140" width="150" height="180" rx="5" fill="#d9eaff" />
@@ -150,14 +158,18 @@
                             <h1 class="display-4 fw-bold mb-4">Dijital Dönüşüm ve Vergi Avantajları</h1>
                             <p class="lead mb-4">İşletmeniz için vergi avantajlarından yararlanın ve dijital dönüşüm süreçlerinizi yönetelim.</p>
                             <div class="d-flex gap-3 slide-buttons">
-                                <a href="blog/dijital-donusum-it-cozumleri.html" class="btn btn-primary btn-lg">Detaylı Bilgi</a>
-                                <a href="iletisim.html" class="btn btn-outline-primary btn-lg">İletişime Geçin</a>
+                                <a href="blog/dijital-donusum-it-cozumleri.html" class="btn btn-primary btn-lg">
+                                    <i class="fas fa-laptop me-2"></i>Detaylı Bilgi
+                                </a>
+                                <a href="iletisim.html" class="btn btn-outline-primary btn-lg">
+                                    <i class="fas fa-envelope me-2"></i>İletişime Geçin
+                                </a>
                             </div>
                         </div>
                         <div class="col-lg-6 mt-5 mt-lg-0 slide-image">
                             <div class="hero-img text-center">
                                 <!-- SVG Görseli -->
-                                <svg width="100%" height="400" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+                                <svg class="hero-svg" width="100%" height="400" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
                                     <rect width="600" height="400" fill="#f8f9fa" opacity="0" />
                                     <!-- Laptop görseli -->
                                     <rect x="150" y="150" width="300" height="180" rx="10" fill="#0d1014" />
@@ -199,14 +211,18 @@
                             <h1 class="display-4 fw-bold mb-4">Şirket Kuruluş ve Muhasebe Süreçleri</h1>
                             <p class="lead mb-4">Şirket kuruluşundan, sürekli muhasebe işlemlerine kadar tüm süreçlerde yanınızdayız.</p>
                             <div class="d-flex gap-3 slide-buttons">
-                                <a href="hizmetler.html#sirket-kurulusu" class="btn btn-primary btn-lg">Şirket Kuruluşu</a>
-                                <a href="hizmetler.html#muhasebe" class="btn btn-outline-primary btn-lg">Muhasebe</a>
+                                <a href="hizmetler.html#sirket-kurulusu" class="btn btn-primary btn-lg">
+                                    <i class="fas fa-building me-2"></i>Şirket Kuruluşu
+                                </a>
+                                <a href="hizmetler.html#muhasebe" class="btn btn-outline-primary btn-lg">
+                                    <i class="fas fa-calculator me-2"></i>Muhasebe
+                                </a>
                             </div>
                         </div>
                         <div class="col-lg-6 mt-5 mt-lg-0 slide-image">
                             <div class="hero-img text-center">
                                 <!-- SVG Görseli -->
-                                <svg width="100%" height="400" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+                                <svg class="hero-svg" width="100%" height="400" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
                                     <rect width="600" height="400" fill="#f8f9fa" opacity="0" />
                                     <!-- Şirket Binası -->
                                     <rect x="220" y="120" width="160" height="200" fill="#0d1014" />
@@ -582,6 +598,8 @@
     .hero-img svg {
         filter: drop-shadow(0px 10px 20px rgba(0, 0, 0, 0.1));
         transition: all 0.5s ease;
+        max-width: 100%;
+        height: auto;
     }
     
     .active .hero-img svg {
@@ -657,6 +675,7 @@
     @media (max-width: 992px) {
         .slider-container {
             height: auto;
+            min-height: 450px;
         }
         
         .slide {
@@ -667,15 +686,86 @@
         .slide-image {
             margin-top: 30px;
         }
+        
+        .hero-svg {
+            height: 300px;
+        }
+        
+        .slide .container {
+            padding-top: 30px;
+            padding-bottom: 30px;
+        }
+        
+        .slide-content h1 {
+            font-size: 2rem;
+        }
     }
 
     @media (max-width: 768px) {
         .slider-container {
             padding-bottom: 80px;
+            min-height: 400px;
+        }
+        
+        .slide .container {
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+        
+        .hero-svg {
+            height: 220px;
+        }
+        
+        .slide-buttons {
+            flex-direction: column;
+            width: 100%;
+            gap: 10px;
+        }
+        
+        .slide-buttons .btn {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
         }
         
         .slider-controls {
             bottom: 20px;
+        }
+        
+        .slide-content h1 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+        
+        .slide-content p {
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+    }
+    
+    @media (max-width: 576px) {
+        .slider-container {
+            min-height: 350px;
+        }
+        
+        .hero-svg {
+            height: 180px;
+        }
+        
+        .slide-content {
+            padding: 15px;
+        }
+        
+        .slide-content h1 {
+            font-size: 1.5rem;
+        }
+        
+        .slide-content p {
+            font-size: 0.9rem;
+        }
+        
+        .slide-image::before {
+            display: none;
         }
     }
     </style>
@@ -690,7 +780,51 @@
             initializeBackgroundEffects();
         };
         document.head.appendChild(gsapScript);
+        
+        // Mobil menü için JavaScript
+        setupMobileMenu();
     });
+    
+    function setupMobileMenu() {
+        const toggler = document.querySelector('.navbar-toggler');
+        const closeBtn = document.querySelector('.navbar-close');
+        const overlay = document.querySelector('.menu-overlay');
+        const navbarCollapse = document.getElementById('navbarNav');
+        const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+        
+        if (toggler) {
+            toggler.addEventListener('click', function() {
+                navbarCollapse.classList.add('show');
+                overlay.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            });
+        }
+        
+        if (closeBtn) {
+            closeBtn.addEventListener('click', closeMenu);
+        }
+        
+        if (overlay) {
+            overlay.addEventListener('click', closeMenu);
+        }
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+        
+        function closeMenu() {
+            navbarCollapse.classList.remove('show');
+            overlay.classList.remove('show');
+            document.body.style.overflow = '';
+        }
+        
+        // Ekran boyutu değiştiğinde menüyü kapat
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 992) {
+                closeMenu();
+            }
+        });
+    }
 
     function initializeBackgroundEffects() {
         if (!window.gsap) return;
