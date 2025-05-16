@@ -493,8 +493,8 @@
     
     .slider-container {
         position: relative;
-        height: 600px; /* Slider yüksekliği */
-        z-index: 5; /* z-index değerini arttırdık */
+        height: 600px; /* Desktop için slider yüksekliği */
+        z-index: 5;
     }
     
     /* Sliderın alt kısmındaki buğulu efekt */
@@ -506,7 +506,7 @@
         width: 100%;
         height: 150px;
         background: linear-gradient(to top, #f0f2f5 5%, rgba(240, 242, 245, 0.8) 40%, rgba(240, 242, 245, 0));
-        z-index: 6; /* z-index değerini arttırdık */
+        z-index: 6;
         pointer-events: none;
     }
 
@@ -517,7 +517,7 @@
         opacity: 0;
         visibility: hidden;
         transition: opacity 0.3s ease;
-        z-index: 5; /* z-index değerini arttırdık */
+        z-index: 5;
         
         /* Slide için arka plan overlay ekledik */
         background: radial-gradient(circle at center, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0) 70%);
@@ -657,15 +657,46 @@
     @media (max-width: 992px) {
         .slider-container {
             height: auto;
+            min-height: 400px;
+            padding-bottom: 80px;
         }
         
         .slide {
             position: relative;
             height: auto;
+            opacity: 1;
+            visibility: visible;
+            display: none;
+        }
+        
+        .slide.active {
+            display: block;
+        }
+        
+        .slide-content {
+            margin-bottom: 20px;
         }
         
         .slide-image {
-            margin-top: 30px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            transform: scale(0.9);
+        }
+        
+        .hero-img svg {
+            max-height: 300px;
+            width: 100%;
+            height: auto;
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+        
+        /* SVG görsellerinin mobilde görünmesini sağla */
+        .slide svg,
+        .slide-image svg {
+            opacity: 1 !important;
+            visibility: visible !important;
+            display: block !important;
         }
     }
 
@@ -676,6 +707,25 @@
         
         .slider-controls {
             bottom: 20px;
+        }
+        
+        .slide-content h1 {
+            font-size: 1.8rem;
+        }
+        
+        .slide-content p {
+            font-size: 1rem;
+        }
+        
+        .slide-buttons .btn {
+            font-size: 0.9rem;
+            padding: 0.5rem 1rem;
+        }
+        
+        .hero-img svg {
+            max-height: 250px;
+            opacity: 1 !important;
+            visibility: visible !important;
         }
     }
     </style>
@@ -690,6 +740,14 @@
             initializeBackgroundEffects();
         };
         document.head.appendChild(gsapScript);
+        
+        // GSAP yüklenmese bile slider'ı başlat
+        setTimeout(function() {
+            if (!window.gsap) {
+                console.log('GSAP yüklenemedi, temel slider başlatılıyor');
+                initializeSlider();
+            }
+        }, 1000);
     });
 
     function initializeBackgroundEffects() {
@@ -762,17 +820,121 @@
     let isAnimating = false;
 
     function initializeSlider() {
-        // GSAP animasyonları tanımlama
-        setupAnimations();
+        // Mobil kontrolü
+        const isMobile = window.innerWidth <= 992;
         
-        // İlk slideın animasyonlarını başlat
-        animateSlide(currentSlide);
+        // Tüm slider içeriklerini mobil için hazırla
+        if (isMobile) {
+            preloadMobileSlides();
+        }
+        
+        // GSAP animasyonları tanımlama
+        if (window.gsap) {
+            setupAnimations();
+        }
+        
+        // İlk slideın gösterilmesi ve animasyonlarını başlatma
+        if (!isMobile) {
+            // Desktop davranışı
+            if (window.gsap) {
+                animateSlide(currentSlide);
+            }
+        } else {
+            // Mobil için tüm slideları görünür yap ama sadece aktif olanı göster
+            slides.forEach((slide, index) => {
+                // SVG içeriklerinin görünürlüğünü sağla
+                const svgElements = slide.querySelectorAll('svg');
+                svgElements.forEach(svg => {
+                    svg.style.visibility = 'visible';
+                    svg.style.opacity = '1';
+                });
+                
+                if (index === currentSlide) {
+                    slide.classList.add('active');
+                    slide.style.display = 'block';
+                } else {
+                    slide.classList.remove('active');
+                    slide.style.display = 'none';
+                }
+            });
+        }
         
         // Otomatik geçiş
         startAutoSlide();
         
         // Slider bileşenleri için hover efektleri
         initializeHoverEffects();
+        
+        // Responsive ayarlamalar için resize dinleyicisi
+        window.addEventListener('resize', handleResize);
+    }
+    
+    // Mobil için tüm slide içeriklerini önceden hazırla
+    function preloadMobileSlides() {
+        slides.forEach((slide) => {
+            // İçeriklerin görünürlüğünü sağlayalım
+            const slideContent = slide.querySelector('.slide-content');
+            const slideImage = slide.querySelector('.slide-image');
+            const buttons = slide.querySelector('.slide-buttons');
+            const heading = slideContent.querySelector('h1');
+            const paragraph = slideContent.querySelector('p');
+            
+            // Tüm elementlerin stillerini sıfırla
+            [slideContent, slideImage, buttons, heading, paragraph].forEach(el => {
+                if (el) {
+                    el.style.opacity = '1';
+                    el.style.transform = 'none';
+                    el.style.visibility = 'visible';
+                }
+            });
+            
+            // SVG görsellerinin yüklenmesini sağla
+            const svg = slide.querySelector('svg');
+            if (svg) {
+                svg.style.opacity = '1';
+                svg.style.visibility = 'visible';
+            }
+        });
+    }
+    
+    function handleResize() {
+        const isMobile = window.innerWidth <= 992;
+        
+        // Mobil modda geçiş yapılıyorsa, tüm slide içeriklerini hazırla
+        if (isMobile) {
+            preloadMobileSlides();
+        }
+        
+        if (isMobile) {
+            // Mobil görünüm için ayarlamalar
+            slides.forEach((slide, index) => {
+                slide.style.position = 'relative';
+                slide.style.height = 'auto';
+                slide.style.opacity = '1';
+                slide.style.visibility = 'visible';
+                
+                if (index === currentSlide) {
+                    slide.style.display = 'block';
+                } else {
+                    slide.style.display = 'none';
+                }
+            });
+        } else {
+            // Desktop görünüm için ayarlamalar
+            slides.forEach((slide, index) => {
+                slide.style.position = 'absolute';
+                slide.style.height = '100%';
+                slide.style.display = 'block';
+                
+                if (index === currentSlide) {
+                    slide.style.opacity = '1';
+                    slide.style.visibility = 'visible';
+                } else {
+                    slide.style.opacity = '0';
+                    slide.style.visibility = 'hidden';
+                }
+            });
+        }
     }
     
     function initializeHoverEffects() {
@@ -826,6 +988,8 @@
     }
 
     function setupAnimations() {
+        if (!window.gsap) return;
+        
         // Tüm slidelar için hazırlık
         slides.forEach((slide, index) => {
             const content = slide.querySelector('.slide-content');
@@ -846,12 +1010,21 @@
     function animateSlide(index) {
         if (!window.gsap) return;
         
+        const isMobile = window.innerWidth <= 992;
         const slide = slides[index];
         const content = slide.querySelector('.slide-content');
         const image = slide.querySelector('.slide-image');
         const buttons = slide.querySelector('.slide-buttons');
         const heading = content.querySelector('h1');
         const paragraph = content.querySelector('p');
+        
+        // Mobil için tüm elementleri hemen görünür yap
+        if (isMobile) {
+            gsap.set([content, heading, paragraph, buttons, image], { 
+                clearProps: "all" 
+            });
+            return;
+        }
         
         const timeline = gsap.timeline();
         
@@ -901,6 +1074,9 @@
     function resetSlideAnimations(index) {
         if (!window.gsap) return;
         
+        const isMobile = window.innerWidth <= 992;
+        if (isMobile) return; // Mobilde animasyonu resetleme
+        
         const slide = slides[index];
         const content = slide.querySelector('.slide-content');
         const image = slide.querySelector('.slide-image');
@@ -919,9 +1095,15 @@
         if (isAnimating) return;
         isAnimating = true;
         
+        const isMobile = window.innerWidth <= 992;
+        
         // Mevcut slideı kapat
         slides[currentSlide].classList.remove('active');
         dots[currentSlide].classList.remove('active');
+        
+        if (isMobile) {
+            slides[currentSlide].style.display = 'none';
+        }
         
         // Sonraki slide'ı hesapla
         currentSlide = (currentSlide + direction + slides.length) % slides.length;
@@ -930,12 +1112,33 @@
         slides[currentSlide].classList.add('active');
         dots[currentSlide].classList.add('active');
         
-        // Yeni slide için animasyonları resetle ve başlat
-        resetSlideAnimations(currentSlide);
-        setTimeout(() => {
-            animateSlide(currentSlide);
-            isAnimating = false;
-        }, 50);
+        if (isMobile) {
+            // Mobil için SVG görsellerinin görünürlüğünü sağla
+            const svgElements = slides[currentSlide].querySelectorAll('svg');
+            svgElements.forEach(svg => {
+                svg.style.visibility = 'visible';
+                svg.style.opacity = '1';
+            });
+            
+            slides[currentSlide].style.display = 'block';
+            
+            // İçerik görünürlüğünü kontrol et ve görünür yap
+            const content = slides[currentSlide].querySelector('.slide-content');
+            const image = slides[currentSlide].querySelector('.slide-image');
+            if (content) content.style.opacity = '1';
+            if (image) image.style.opacity = '1';
+            
+            setTimeout(() => {
+                isAnimating = false;
+            }, 50);
+        } else {
+            // Desktop için animasyonlar
+            resetSlideAnimations(currentSlide);
+            setTimeout(() => {
+                animateSlide(currentSlide);
+                isAnimating = false;
+            }, 50);
+        }
         
         // Otomatik geçişi yeniden başlat
         restartAutoSlide();
@@ -945,21 +1148,48 @@
         if (currentSlide === index || isAnimating) return;
         isAnimating = true;
         
+        const isMobile = window.innerWidth <= 992;
+        
         // Mevcut slideı kapat
         slides[currentSlide].classList.remove('active');
         dots[currentSlide].classList.remove('active');
+        
+        if (isMobile) {
+            slides[currentSlide].style.display = 'none';
+        }
         
         // Yeni slideı aç
         currentSlide = index;
         slides[currentSlide].classList.add('active');
         dots[currentSlide].classList.add('active');
         
-        // Yeni slide için animasyonları resetle ve başlat
-        resetSlideAnimations(currentSlide);
-        setTimeout(() => {
-            animateSlide(currentSlide);
-            isAnimating = false;
-        }, 50);
+        if (isMobile) {
+            // Mobil için SVG görsellerinin görünürlüğünü sağla
+            const svgElements = slides[currentSlide].querySelectorAll('svg');
+            svgElements.forEach(svg => {
+                svg.style.visibility = 'visible';
+                svg.style.opacity = '1';
+            });
+            
+            slides[currentSlide].style.display = 'block';
+            
+            // İçerik görünürlüğünü kontrol et ve görünür yap
+            const content = slides[currentSlide].querySelector('.slide-content');
+            const image = slides[currentSlide].querySelector('.slide-image');
+            if (content) content.style.opacity = '1';
+            if (image) image.style.opacity = '1';
+            
+            setTimeout(() => {
+                isAnimating = false;
+            }, 50);
+        } else {
+            // Desktop için animasyonlar
+            resetSlideAnimations(currentSlide);
+            setTimeout(() => {
+                animateSlide(currentSlide);
+                isAnimating = false;
+            }, 50);
+        }
         
         // Otomatik geçişi yeniden başlat
         restartAutoSlide();
