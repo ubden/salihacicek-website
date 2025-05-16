@@ -423,11 +423,156 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </footer>
     
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+   <!-- Bootstrap JS -->
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
     <!-- Custom JS -->
     <script src="js/main.js"></script>
+    
+    <!-- WhatsApp Sticky Button -->
+    <div class="whatsapp-sticky">
+        <div class="whatsapp-btn">
+            <i class="fab fa-whatsapp"></i>
+        </div>
+        <div class="whatsapp-popup">
+            <div class="popup-header">
+                <h5><i class="fab fa-whatsapp"></i> WhatsApp İletişim</h5>
+                <button type="button" class="close-btn"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="popup-body">
+                <p>Size nasıl yardımcı olabiliriz?</p>
+                <textarea id="whatsapp-message" placeholder="Mesajınızı yazın..."></textarea>
+                <button id="whatsapp-send" class="btn btn-success w-100 mt-2">
+                    <i class="fab fa-whatsapp me-2"></i>Gönder
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <style>
+    /* WhatsApp Sticky Button Styles */
+    .whatsapp-sticky {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 999;
+    }
+    
+    .whatsapp-btn {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background-color: #1a1a1a;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        cursor: pointer;
+        animation: pulse-whatsapp 2s infinite;
+        transition: all 0.3s ease;
+    }
+    
+    .whatsapp-btn:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    .whatsapp-btn i {
+        font-size: 32px;
+        color: white;
+    }
+    
+    @keyframes pulse-whatsapp {
+        0% {
+            box-shadow: 0 0 0 0 rgba(19, 19, 19, 0.5);
+        }
+        70% {
+            box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+        }
+        100% {
+            box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+        }
+    }
+    
+    .whatsapp-popup {
+        position: absolute;
+        bottom: 80px;
+        right: 0;
+        width: 300px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        display: none;
+        transition: all 0.3s ease;
+        overflow: hidden;
+    }
+    
+    .popup-header {
+        background-color: #383838;
+        color: white;
+        padding: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .popup-header h5 {
+        margin: 0;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        color: #fff;
+    }
+    
+    .popup-header h5 i {
+        margin-right: 8px;
+    }
+    
+    .close-btn {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+    }
+    
+    .popup-body {
+        padding: 15px;
+    }
+    
+    .popup-body p {
+        margin-bottom: 10px;
+        color: #555;
+    }
+    
+    #whatsapp-message {
+        width: 100%;
+        height: 80px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        resize: none;
+        font-family: 'Poppins', sans-serif;
+    }
+    
+    /* Mobil için düzenleme */
+    @media (max-width: 576px) {
+        .whatsapp-popup {
+            width: 280px;
+            right: 0;
+        }
+        
+        .whatsapp-btn {
+            width: 50px;
+            height: 50px;
+        }
+        
+        .whatsapp-btn i {
+            font-size: 26px;
+        }
+    }
+    </style>
+    
     <script>
     // WhatsApp butonu etkileşimleri
     document.addEventListener('DOMContentLoaded', function() {
