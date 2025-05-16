@@ -363,8 +363,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <h4 class="h6 fw-bold">Çalışma Saatleri</h4>
                                     <ul class="list-unstyled">
                                         <li class="mb-2">Pazartesi - Cuma: 09:00 - 18:00</li>
-                                        <li class="mb-2">Cumartesi: 09:00 - 14:00</li>
-                                    </ul>
+                                                    </ul>
                                 </div>
                             </div>
                         </div>
@@ -383,8 +382,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <p>Profesyonel mali müşavirlik ve danışmanlık hizmetleri sunuyoruz.</p>
                     <div class="social-links mt-4">
                         <a href="https://www.linkedin.com/company/smmm-saliha-cicek/" class="text-white me-3" target="_blank"><i class="fab fa-linkedin fa-lg"></i></a>
-                        <a href="#" class="text-white me-3"><i class="fab fa-facebook fa-lg"></i></a>
-                        <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                       
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -399,8 +397,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <h3 class="h5 mb-4">Çalışma Saatleri</h3>
                     <ul class="list-unstyled">
                         <li class="mb-2">Pazartesi - Cuma: 09:00 - 18:00</li>
-                        <li class="mb-2">Cumartesi: 09:00 - 14:00</li>
-                        <li class="mb-2">Pazar: Kapalı</li>
+                        <li class="mb-2">Cmt-Pzr: Kapalı</li>
                     </ul>
                 </div>
             </div>
